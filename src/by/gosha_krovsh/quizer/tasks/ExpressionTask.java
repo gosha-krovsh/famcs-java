@@ -7,10 +7,11 @@ import by.gosha_krovsh.quizer.Task;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// leftNumber <operator> rightNumber = answer
 public class ExpressionTask implements Task {
     public ExpressionTask(int leftNumber, int rightNumber, Operator operator) {
-        this.lhs = leftNumber;
-        this.rhs = rightNumber;
+        this.leftNumber = leftNumber;
+        this.rightNumber = rightNumber;
         this.operator = operator;
 
         this.answer = Integer.toString(calculateResult());
@@ -18,7 +19,7 @@ public class ExpressionTask implements Task {
 
     @Override
     public String getText() {
-        return Integer.toString(lhs) + getOperatorString() + Integer.toString(rhs);
+        return Integer.toString(leftNumber) + getOperatorString() + Integer.toString(rightNumber);
     }
 
     @Override
@@ -34,15 +35,16 @@ public class ExpressionTask implements Task {
 
     private int calculateResult(){
         switch (this.operator) {
-            case PLUS: return lhs + rhs;
-            case MINUS: return lhs - rhs;
-            case MULTIPLY: return lhs * rhs;
-            case DIVIDE: return lhs / rhs;
+            case PLUS: return leftNumber + rightNumber;
+            case MINUS: return leftNumber - rightNumber;
+            case MULTIPLY: return leftNumber * rightNumber;
+            case DIVIDE: return leftNumber / rightNumber;
         }
         return 0;
     }
 
     private String getOperatorString() {
+        //TODO(George) correct divide and throw exceptions
         switch (this.operator) {
             case PLUS: return "+";
             case MINUS: return "-";
@@ -52,8 +54,8 @@ public class ExpressionTask implements Task {
         return "";
     }
 
-    private final int lhs;
-    private final int rhs;
+    private final int leftNumber;
+    private final int rightNumber;
     private final Operator operator;
 
     private final String answer;
