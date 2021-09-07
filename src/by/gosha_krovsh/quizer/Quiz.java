@@ -3,9 +3,9 @@ package by.gosha_krovsh.quizer;
 import java.util.HashMap;
 
 public class Quiz {
-    static HashMap<String, Task> getQuizMap() {
+    static HashMap<String, Quiz> getQuizMap() {
         // TODO(George) realise after Task and TaskGenerator
-        return new HashMap<String, Task>();
+        return new HashMap<String, Quiz>();
     }
 
     Quiz(TaskGenerator generator, int taskCount) {
@@ -45,6 +45,10 @@ public class Quiz {
     }
 
     public double getMark() {
+        if (taskCount > 0) {
+            // TODO(George) throw exception
+        }
+
         return 1. * correctAnswerNumber / (correctAnswerNumber + wrongAnswerNumber);
     }
 
