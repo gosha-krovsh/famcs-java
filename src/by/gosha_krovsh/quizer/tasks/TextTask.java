@@ -4,7 +4,7 @@ import by.gosha_krovsh.quizer.Result;
 import by.gosha_krovsh.quizer.Task;
 
 public class TextTask implements Task {
-    TextTask(String text, String answer) {
+    public TextTask(String text, String answer) {
         this.text = text;
         this.answer = answer;
     }

@@ -14,57 +14,60 @@ public class EquationTask implements Task {
         this.rightNumber = rightNumber;
         this.operator = operator;
 
-        this.x = Integer.toString(calculateResult());
+        this.text = leftNumber + operator.toString() + rightNumber;
+
+        String answer = "Exception";
+        try {
+            answer = Integer.toString(calculateResult(operator));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.answer = answer;
+        }
     }
 
     @Override
     public String getText() {
-        return Integer.toString(leftNumber) + getOperatorString() + Integer.toString(rightNumber);
+        return text;
     }
 
     @Override
     public Result validate(String answer) {
-        Pattern pattern = Pattern.compile("^[0-9]*$");
+        Pattern pattern = Pattern.compile(getAnswerRegex());
         Matcher matcher = pattern.matcher(answer);
         if (!matcher.matches()) {
             return Result.INCORRECT_INPUT;
         }
 
-        return answer.equals(this.x) ? Result.OK : Result.WRONG;
+        return answer.equals(this.answer) ? Result.OK : Result.WRONG;
     }
 
-    private int calculateResult() {
-        //TODO(George) correct divide and throw exceptions
-        switch (this.operator) {
+    private int calculateResult(Operator operator) throws ArithmeticException {
+        switch (operator) {
             case PLUS:
                 return rightNumber - leftNumber;
             case MINUS:
                 return rightNumber + rightNumber;
-            case MULTIPLY:
+            case MULTIPLY: {
+                if (leftNumber == 0) {
+                    throw new ArithmeticException("Division by zero");
+                }
                 return rightNumber / leftNumber;
+            }
             case DIVIDE:
                 return rightNumber * leftNumber;
         }
         return 0;
     }
 
-    private String getOperatorString() {
-        switch (this.operator) {
-            case PLUS:
-                return "+";
-            case MINUS:
-                return "-";
-            case MULTIPLY:
-                return "*";
-            case DIVIDE:
-                return "/";
-        }
-        return "";
+    private String getAnswerRegex() {
+        return "^[0-9]*$";
     }
 
     private final int leftNumber;
     private final int rightNumber;
     private final Operator operator;
 
-    private final String x;
+    private final String text;
+    private final String answer;
 }

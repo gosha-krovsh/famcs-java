@@ -14,17 +14,25 @@ public class ExpressionTask implements Task {
         this.rightNumber = rightNumber;
         this.operator = operator;
 
-        this.answer = Integer.toString(calculateResult());
+        this.text = leftNumber + operator.toString() + rightNumber;
+        String answer = "Exception";
+        try {
+            answer = Integer.toString(calculateResult(operator));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.answer = answer;
+        }
     }
 
     @Override
     public String getText() {
-        return Integer.toString(leftNumber) + getOperatorString() + Integer.toString(rightNumber);
+        return text;
     }
 
     @Override
     public Result validate(String answer) {
-        Pattern pattern = Pattern.compile("^[0-9]*$");
+        Pattern pattern = Pattern.compile(getAnswerRegex());
         Matcher matcher = pattern.matcher(answer);
         if (!matcher.matches()) {
             return Result.INCORRECT_INPUT;
@@ -33,30 +41,32 @@ public class ExpressionTask implements Task {
         return answer.equals(this.answer) ? Result.OK : Result.WRONG;
     }
 
-    private int calculateResult(){
-        switch (this.operator) {
-            case PLUS: return leftNumber + rightNumber;
-            case MINUS: return leftNumber - rightNumber;
-            case MULTIPLY: return leftNumber * rightNumber;
-            case DIVIDE: return leftNumber / rightNumber;
+    private int calculateResult(Operator operator) throws ArithmeticException {
+        switch (operator) {
+            case PLUS:
+                return leftNumber + rightNumber;
+            case MINUS:
+                return leftNumber - rightNumber;
+            case MULTIPLY:
+                return leftNumber * rightNumber;
+            case DIVIDE: {
+                if (rightNumber == 0) {
+                    throw new ArithmeticException("Division by zero");
+                }
+                return leftNumber / rightNumber;
+            }
         }
         return 0;
     }
 
-    private String getOperatorString() {
-        //TODO(George) correct divide and throw exceptions
-        switch (this.operator) {
-            case PLUS: return "+";
-            case MINUS: return "-";
-            case MULTIPLY: return "*";
-            case DIVIDE: return "/";
-        }
-        return "";
+    private String getAnswerRegex() {
+        return "^[0-9]*$";
     }
 
     private final int leftNumber;
     private final int rightNumber;
     private final Operator operator;
 
+    private final String text;
     private final String answer;
 }
