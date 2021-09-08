@@ -3,6 +3,7 @@ package by.gosha_krovsh.quizer.task_generators.math_task_generators;
 import by.gosha_krovsh.quizer.Operator;
 import by.gosha_krovsh.quizer.Task;
 import by.gosha_krovsh.quizer.tasks.ExpressionTask;
+import by.gosha_krovsh.quizer.tasks.math_tasks.IntegerExpressionMathTask;
 
 import java.util.EnumSet;
 import java.util.concurrent.ThreadLocalRandom;
@@ -23,7 +24,7 @@ public class IntegerExpressionMathTaskGenerator
         int operatorIndex = ThreadLocalRandom.current().nextInt(0, this.operatorsToUse.size());
 
         Operator[] operatorArray = operatorsToUse.toArray(new Operator[0]);
-        return new ExpressionTask(leftNumber, rightNumber, operatorArray[operatorIndex]);
+        return new IntegerExpressionMathTask(leftNumber, rightNumber, operatorArray[operatorIndex]);
     }
 
     @Override

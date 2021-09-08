@@ -23,7 +23,7 @@ public abstract class AbstractMathTask implements MathTask {
     }
 
     // ^(\d+[\.]?([\d]+)?)$
-    private String getAnswerRegex(){
+    protected String getAnswerRegex(){
         return "^[0-9]*$";
     }
 
