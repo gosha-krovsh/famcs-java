@@ -1,11 +1,17 @@
 package by.gosha_krovsh.quizer;
 
+import by.gosha_krovsh.quizer.task_generators.GroupTaskGenerator;
+import by.gosha_krovsh.quizer.task_generators.PoolTaskGenerator;
+import by.gosha_krovsh.quizer.tasks.TextTask;
+
 import java.util.HashMap;
 
 public class Quiz {
     static HashMap<String, Quiz> getQuizMap() {
         // TODO(George) realise after Task and TaskGenerator
-        return new HashMap<String, Quiz>();
+        HashMap<String, Quiz> map = new HashMap<>();
+        map.put("Text", new Quiz(new PoolTaskGenerator(true, new TextTask("Да?", "Да")), 1));
+        return map;
     }
 
     Quiz(TaskGenerator generator, int taskCount) {
@@ -13,9 +19,9 @@ public class Quiz {
         this.taskCount = taskCount;
     }
 
-    Task nextTask() {
+    Task nextTask() throws RuntimeException {
         if (taskCount == 0) {
-            // TODO(George) throw exception
+            throw new RuntimeException("Quiz is finished");
         }
 
         if (isInputCorrect) {
@@ -31,22 +37,25 @@ public class Quiz {
             case OK: {
                 isInputCorrect = true;
                 ++correctAnswerNumber;
+                break;
             }
             case WRONG: {
                 isInputCorrect = true;
                 ++wrongAnswerNumber;
+                break;
             }
             case INCORRECT_INPUT: {
                 isInputCorrect = false;
                 ++incorrectInputNumber;
+                break;
             }
         }
         return result;
     }
 
-    public double getMark() {
+    public double getMark() throws RuntimeException {
         if (taskCount > 0) {
-            // TODO(George) throw exception
+            throw new RuntimeException("Quiz is not finished");
         }
 
         return 1. * correctAnswerNumber / (correctAnswerNumber + wrongAnswerNumber);
