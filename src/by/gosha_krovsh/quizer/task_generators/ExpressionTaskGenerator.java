@@ -5,7 +5,6 @@ import by.gosha_krovsh.quizer.TaskGenerator;
 import by.gosha_krovsh.quizer.Operator;
 import by.gosha_krovsh.quizer.tasks.ExpressionTask;
 
-import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -27,7 +26,7 @@ public class ExpressionTaskGenerator implements TaskGenerator {
         return new ExpressionTask(leftNumber, rightNumber, operatorArray[operatorIndex]);
     }
 
-    private EnumSet<Operator> operatorsToUse;
+    private final EnumSet<Operator> operatorsToUse;
     private final int minNumber;
     private final int maxNumber;
 }
