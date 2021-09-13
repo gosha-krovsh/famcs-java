@@ -8,7 +8,7 @@ public class IntegerEquationMathTask extends EquationMathTask implements Integer
         this.rightNumber = rightNumber;
         this.operator = operator;
 
-        this.text = leftNumber + operator.toString() + rightNumber;
+        this.text = leftNumber + " " + operator.toString() + " x = " + rightNumber;;
         String answer = "Exception";
         try {
             answer = Integer.toString(calculateResult(operator));
@@ -24,15 +24,19 @@ public class IntegerEquationMathTask extends EquationMathTask implements Integer
             case PLUS:
                 return rightNumber - leftNumber;
             case MINUS:
-                return rightNumber + rightNumber;
+                return leftNumber - rightNumber;
             case MULTIPLY: {
                 if (leftNumber == 0) {
                     throw new ArithmeticException("Division by zero");
                 }
                 return rightNumber / leftNumber;
             }
-            case DIVIDE:
-                return rightNumber * leftNumber;
+            case DIVIDE: {
+                if (rightNumber == 0) {
+                    throw new ArithmeticException("Division by zero");
+                }
+                return leftNumber / rightNumber;
+            }
         }
         return 0;
     }

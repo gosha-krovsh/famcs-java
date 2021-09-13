@@ -60,7 +60,7 @@ public class ExpressionTask implements Task {
     }
 
     private String getAnswerRegex() {
-        return "^[0-9]*$";
+        return "^\\+?\\-?[0-9]*$";
     }
 
     private final int leftNumber;

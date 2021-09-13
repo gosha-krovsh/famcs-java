@@ -18,9 +18,9 @@ public class PoolTaskGenerator implements TaskGenerator {
     }
 
     @Override
-    public Task generate() {
+    public Task generate() throws RuntimeException {
         if (tasks.size() == 0) {
-            //TODO(George) throw exception
+            throw new RuntimeException("No Tasks left");
         }
 
         int index = ThreadLocalRandom.current().nextInt(0, this.tasks.size());

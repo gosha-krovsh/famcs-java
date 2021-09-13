@@ -55,7 +55,7 @@ public class RealExpressionMathTask extends ExpressionMathTask implements RealMa
 
     @Override
     protected String getAnswerRegex(){
-        return "^(\\d+[\\.]?([\\d]{" + precision + "})?)$";
+        return "^\\+?\\-?(\\d+[\\.]?([\\d]{" + precision + "})?)$";
     }
 
     private final int precision;

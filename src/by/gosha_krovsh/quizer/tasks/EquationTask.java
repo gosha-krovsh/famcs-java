@@ -14,7 +14,7 @@ public class EquationTask implements Task {
         this.rightNumber = rightNumber;
         this.operator = operator;
 
-        this.text = leftNumber + operator.toString() + rightNumber;
+        this.text = leftNumber + " " + operator.toString() + " x = " + rightNumber;
 
         String answer = "Exception";
         try {
@@ -61,7 +61,7 @@ public class EquationTask implements Task {
     }
 
     private String getAnswerRegex() {
-        return "^[0-9]*$";
+        return "^\\+?\\-?[0-9]*";
     }
 
     private final int leftNumber;

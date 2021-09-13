@@ -24,7 +24,7 @@ public abstract class AbstractMathTask implements MathTask {
 
     // ^(\d+[\.]?([\d]+)?)$
     protected String getAnswerRegex(){
-        return "^[0-9]*$";
+        return "^\\+?\\-?[0-9]*";
     }
 
     protected String text;

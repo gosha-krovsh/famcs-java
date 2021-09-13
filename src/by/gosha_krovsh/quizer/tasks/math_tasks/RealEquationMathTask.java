@@ -12,7 +12,7 @@ public class RealEquationMathTask extends EquationMathTask implements RealMathTa
         this.rightNumber = rightNumber;
         this.operator = operator;
 
-        this.text = leftNumber + operator.toString() + rightNumber;
+        this.text = leftNumber + " " + operator.toString() + " x = " + rightNumber;
         String answer = "Exception";
         try {
             answer = Double.toString(calculateResult(operator));
@@ -27,11 +27,11 @@ public class RealEquationMathTask extends EquationMathTask implements RealMathTa
         double result = 0;
         switch (operator) {
             case PLUS: {
-                result = leftNumber - rightNumber;
+                result = rightNumber - leftNumber;
                 break;
             }
             case MINUS: {
-                result = leftNumber + rightNumber;
+                result = leftNumber - rightNumber;
                 break;
             }
             case MULTIPLY: {
@@ -43,7 +43,11 @@ public class RealEquationMathTask extends EquationMathTask implements RealMathTa
                 break;
             }
             case DIVIDE: {
-                result = leftNumber * rightNumber;
+                if (Double.compare(rightNumber, 0) == 0) {
+                    throw new ArithmeticException("Division by zero");
+                }
+
+                result = leftNumber / rightNumber;
                 break;
             }
         }
@@ -55,7 +59,7 @@ public class RealEquationMathTask extends EquationMathTask implements RealMathTa
 
     @Override
     protected String getAnswerRegex(){
-        return "^(\\d+[\\.]?([\\d]{" + precision + "})?)$";
+        return "^\\+?\\-?(\\d+[\\.]?([\\d]{" + precision + "})?)$";
     }
 
     private final int precision;
