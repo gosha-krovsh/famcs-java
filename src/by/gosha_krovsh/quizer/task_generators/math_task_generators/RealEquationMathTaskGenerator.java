@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RealEquationMathTaskGenerator extends EquationMathTaskGenerator implements RealMathTaskGenerator {
     public RealEquationMathTaskGenerator(int precision, double minNumber, double maxNumber,
-                                           EnumSet<Operator> operatorsToUse) {
+                                         EnumSet<Operator> operatorsToUse) {
         this.precision = precision;
         this.minNumber = minNumber;
         this.maxNumber = maxNumber;

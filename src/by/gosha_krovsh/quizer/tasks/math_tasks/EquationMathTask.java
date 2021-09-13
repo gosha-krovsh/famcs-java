@@ -1,3 +1,4 @@
 package by.gosha_krovsh.quizer.tasks.math_tasks;
 
-public abstract class EquationMathTask extends AbstractMathTask { }
+public abstract class EquationMathTask extends AbstractMathTask {
+}

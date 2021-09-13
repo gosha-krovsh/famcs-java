@@ -8,7 +8,7 @@ public class IntegerEquationMathTask extends EquationMathTask implements Integer
         this.rightNumber = rightNumber;
         this.operator = operator;
 
-        this.text = leftNumber + " " + operator.toString() + " x = " + rightNumber;;
+        this.text = leftNumber + " " + operator.toString() + " x = " + rightNumber;
         String answer = "Exception";
         try {
             answer = Integer.toString(calculateResult(operator));

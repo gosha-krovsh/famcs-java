@@ -1,25 +1,25 @@
 package by.gosha_krovsh.quizer;
 
 public enum Operator {
-    PLUS{
+    PLUS {
         @Override
         public String toString() {
             return "+";
         }
     },
-    MINUS{
+    MINUS {
         @Override
         public String toString() {
             return "-";
         }
     },
-    MULTIPLY{
+    MULTIPLY {
         @Override
         public String toString() {
             return "*";
         }
     },
-    DIVIDE{
+    DIVIDE {
         @Override
         public String toString() {
             return "/";

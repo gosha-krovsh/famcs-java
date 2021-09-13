@@ -16,9 +16,9 @@ public class GroupTaskGenerator implements TaskGenerator {
     }
 
     @Override
-    public Task generate() {
+    public Task generate() throws RuntimeException {
         if (taskGenerators.size() == 0) {
-            // TODO(George) throw exception
+            throw new RuntimeException("No Tasks left");
         }
 
         int index = ThreadLocalRandom.current().nextInt(0, this.taskGenerators.size());

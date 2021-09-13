@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class IntegerEquationMathTaskGenerator
         extends EquationMathTaskGenerator implements IntegerMathTaskGenerator {
     public IntegerEquationMathTaskGenerator(int minNumber, int maxNumber,
-                                              EnumSet<Operator> operatorsToUse) {
+                                            EnumSet<Operator> operatorsToUse) {
         this.minNumber = minNumber;
         this.maxNumber = maxNumber;
         this.operatorsToUse = operatorsToUse;

@@ -58,7 +58,7 @@ public class RealEquationMathTask extends EquationMathTask implements RealMathTa
     }
 
     @Override
-    protected String getAnswerRegex(){
+    protected String getAnswerRegex() {
         return "^\\+?\\-?(\\d+[\\.]?([\\d]{" + precision + "})?)$";
     }
 

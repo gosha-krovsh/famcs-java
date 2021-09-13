@@ -2,7 +2,6 @@ package by.gosha_krovsh.quizer.task_generators.math_task_generators;
 
 import by.gosha_krovsh.quizer.Operator;
 import by.gosha_krovsh.quizer.Task;
-import by.gosha_krovsh.quizer.tasks.ExpressionTask;
 import by.gosha_krovsh.quizer.tasks.math_tasks.IntegerExpressionMathTask;
 
 import java.util.EnumSet;
@@ -11,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class IntegerExpressionMathTaskGenerator
         extends ExpressionMathTaskGenerator implements IntegerMathTaskGenerator {
     public IntegerExpressionMathTaskGenerator(int minNumber, int maxNumber,
-                                   EnumSet<Operator> operatorsToUse) {
+                                              EnumSet<Operator> operatorsToUse) {
         this.minNumber = minNumber;
         this.maxNumber = maxNumber;
         this.operatorsToUse = operatorsToUse;
