@@ -1,16 +1,60 @@
 package by.gosha_krovsh.quizer;
 
+import by.gosha_krovsh.quizer.task_generators.EquationTaskGenerator;
+import by.gosha_krovsh.quizer.task_generators.ExpressionTaskGenerator;
 import by.gosha_krovsh.quizer.task_generators.GroupTaskGenerator;
 import by.gosha_krovsh.quizer.task_generators.PoolTaskGenerator;
+import by.gosha_krovsh.quizer.task_generators.math_task_generators.*;
 import by.gosha_krovsh.quizer.tasks.TextTask;
 
+import java.util.EnumSet;
 import java.util.HashMap;
 
 public class Quiz {
     static HashMap<String, Quiz> getQuizMap() {
-        // TODO(George) realise after Task and TaskGenerator
         HashMap<String, Quiz> map = new HashMap<>();
-        map.put("Text", new Quiz(new PoolTaskGenerator(true, new TextTask("Да?", "Да")), 1));
+        // TextTask
+        map.put("TextTask",
+                new Quiz(
+                        new PoolTaskGenerator(true,
+                                new TextTask("Да?", "Да"),
+                                new TextTask("Нет?", "Нет")), 2));
+        // EquationTaskTask
+        EquationTaskGenerator equationTaskGenerator =
+                new EquationTaskGenerator(1, 10, EnumSet.of(Operator.PLUS, Operator.MINUS));
+        Quiz equationQuiz = new Quiz(equationTaskGenerator, 5);
+        map.put("EquationTask", equationQuiz);
+        // ExpressionTask
+        ExpressionTaskGenerator expressionTaskGenerator =
+                new ExpressionTaskGenerator(1, 10, EnumSet.of(Operator.MULTIPLY, Operator.MINUS));
+        Quiz expressionQuiz = new Quiz(expressionTaskGenerator, 3);
+        map.put("ExpressionTask", expressionQuiz);
+        // IntegerEquationMathTask
+        IntegerEquationMathTaskGenerator integerEquationMathTaskGenerator =
+                new IntegerEquationMathTaskGenerator(1, 10, EnumSet.of(Operator.PLUS, Operator.MINUS));
+        Quiz integerEquationQuiz = new Quiz(integerEquationMathTaskGenerator, 3);
+        map.put("IntegerEquationMathTask", integerEquationQuiz);
+        // IntegerExpressionMathTask
+        IntegerExpressionMathTaskGenerator integerExpressionMathTaskGenerator =
+                new IntegerExpressionMathTaskGenerator(1, 10, EnumSet.of(Operator.DIVIDE));
+        Quiz integerExpressionQuiz = new Quiz(integerExpressionMathTaskGenerator, 3);
+        map.put("IntegerExpressionMathTask", integerExpressionQuiz);
+        // RealEquationMathTask
+        RealEquationMathTaskGenerator realEquationMathTaskGenerator =
+                new RealEquationMathTaskGenerator(2, 1, 10, EnumSet.of(Operator.MINUS));
+        Quiz realEquationQuiz = new Quiz(realEquationMathTaskGenerator, 1);
+        map.put("RealEquationMathTask", realEquationQuiz);
+        // RealExpressionMathTask
+        RealExpressionMathTaskGenerator realExpressionMathTaskGenerator =
+                new RealExpressionMathTaskGenerator(3, 1, 10, EnumSet.of(Operator.MULTIPLY));
+        Quiz realExpressionQuiz = new Quiz(realExpressionMathTaskGenerator, 1);
+        map.put("RealExpressionMathTask", realExpressionQuiz);
+        // GroupTaskGenerator
+        GroupTaskGenerator groupTaskGenerator =
+                new GroupTaskGenerator(integerEquationMathTaskGenerator, realExpressionMathTaskGenerator);
+        Quiz groupQuiz = new Quiz(groupTaskGenerator, 2);
+        map.put("GroupTask", groupQuiz);
+
         return map;
     }
 
